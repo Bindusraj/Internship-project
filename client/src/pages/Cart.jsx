@@ -10,7 +10,7 @@ export default function Cart() {
   // ✅ Fetch cart
   const fetchCart = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/cart", {
+      const res = await fetch("/api/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +30,7 @@ export default function Cart() {
   // ✅ Increase quantity
   const addToCart = async (id) => {
     try {
-      await fetch("http://localhost:5000/api/cart/add", {
+      await fetch("/api/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function Cart() {
   // ✅ Decrease quantity
   const decreaseQty = async (id) => {
     try {
-      await fetch("http://localhost:5000/api/cart/decrease", {
+      await fetch("/api/cart/decrease", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export default function Cart() {
   // ✅ Remove item
   const removeItem = async (id) => {
     try {
-      await fetch("http://localhost:5000/api/cart/remove", {
+      await fetch("/api/cart/remove", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

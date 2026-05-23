@@ -10,7 +10,7 @@ export default function Checkout() {
   useEffect(() => {
     const fetchTotal = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/cart", {
+        const res = await fetch("/api/cart", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -41,7 +41,7 @@ export default function Checkout() {
 
       // 🔹 create order from backend
       const res = await fetch(
-        "http://localhost:5000/api/payment/create-order",
+        "/api/payment/create-order",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ export default function Checkout() {
         handler: async function (response) {
           try {
             const res = await fetch(
-              "http://localhost:5000/api/orders",
+              "/api/orders",
               {
                 method: "POST",
                 headers: {

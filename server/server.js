@@ -40,10 +40,20 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("API Running");
-});
+// Serve Frontend in Production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
+  });
+} else {
+  // Test route
+  app.get("/", (req, res) => {
+    res.send("API Running");
+  });
+}
+
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
