@@ -10,7 +10,6 @@ export default function App() {
   // ✅ Auto-login Guest User so Cart & Checkout work without a Login page
   useEffect(() => {
     const autoLogin = async () => {
-      if (!localStorage.getItem("token")) {
         try {
           // 1. Try to Login as Guest
           let res = await fetch("/api/auth/login", {
@@ -37,7 +36,6 @@ export default function App() {
         } catch (error) {
           console.error("Guest auto-login failed:", error);
         }
-      }
     };
     autoLogin();
   }, []);
